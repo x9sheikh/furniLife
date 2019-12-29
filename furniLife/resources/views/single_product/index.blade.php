@@ -130,7 +130,7 @@
                                 <div class="product-ratting-wrap">
                                     <div class="pro-avg-ratting">
                                         <h4>{{$average_star}} <span>(Overall)</span></h4>
-                                        <span>Based on 9 Comments</span>
+                                        <span>Based on {{$total_review}} Comments</span>
                                     </div>
                                     <div class="ratting-list">
                                         <div class="sin-list float-left">
@@ -222,11 +222,7 @@
                                                         </div>
                                                     @endif
                                                 </div>
-                                                <p>enim ipsam voluptatem quia voluptas sit
-                                                    aspernatur aut odit aut fugit, sed quia res eos
-                                                    qui ratione voluptatem sequi Neque porro
-                                                    quisquam est, qui dolorem ipsum quia dolor sit
-                                                    amet, consectetur, adipisci veli</p>
+                                                <p>{{ $review->review }}</p>
                                             </div>
                                         @endforeach
 

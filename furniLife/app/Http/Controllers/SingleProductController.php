@@ -39,6 +39,8 @@ class SingleProductController extends Controller
         $reviews = DB::select('SELECT reviews.id, reviews.product_id, reviews.review, reviews.star, users.name FROM reviews
                         LEFT JOIN users ON users.id = reviews.user_id where reviews.product_id = :product_id', ['product_id' => $product_id]);
 
+        $all_reviews = $reviews;
+        $total_review = count($reviews);
 
 
         if ($product){
@@ -57,7 +59,8 @@ class SingleProductController extends Controller
             }
             $data = array(
                 'categories' => Category::all(),
-                'reviews' => $reviews,
+                'reviews' => $all_reviews,
+                'total_review' => $total_review,
                 'average_star' => $average_star,
                 'star_one' => $count_star_one,
                 'star_two' => $count_star_two,
