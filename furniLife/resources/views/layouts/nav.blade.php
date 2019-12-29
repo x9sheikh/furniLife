@@ -43,11 +43,15 @@
 <body class="home-three">
 @if(session()->get('flash_success_home'))
     <script type="text/javascript">
-        alert('Product added Successfully!')
+        alert('Product added Successfully!!!')
     </script>
 @elseif(session()->get('remove_product'))
     <script type="text/javascript">
-        alert('Product removed Successfully!')
+        alert('Product removed Successfully!!!')
+    </script>
+@elseif(session()->get('flash_danger'))
+    <script type="text/javascript">
+        alert('You Cannt access the Admin Panel')
     </script>
 @endif
 <!--=============================================

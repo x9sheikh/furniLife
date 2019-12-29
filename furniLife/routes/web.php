@@ -54,3 +54,7 @@ Route::post('/contactus/show/submit', 'ContactUsController@submit');
 Route::get('/aboutus/show', 'AboutusController@index');
 
 Route::get('search/{search}', 'SearchController@index');
+
+// ADMIN PANNEL ROUTES ARE HERE //
+
+Route::get('/admin/home', 'AdminController@index');
