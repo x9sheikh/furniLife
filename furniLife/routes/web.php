@@ -58,3 +58,10 @@ Route::get('search/{search}', 'SearchController@index');
 // ADMIN PANNEL ROUTES ARE HERE //
 
 Route::get('/admin/home', 'AdminController@index');
+
+
+// Profile Checking can delete after development//
+
+Route::get('/profile/show', function (){
+   return view('profile');
+});
