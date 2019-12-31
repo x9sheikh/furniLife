@@ -16,8 +16,12 @@ class AdminMiddleware
      */
     public function handle($request, Closure $next)
     {
+        if (!Auth::user() ){
+            return redirect('/');
+        }
         if (Auth::user()->usertype == 'admin'){
             return $next($request);
+
         }
         else{
             $data = array(

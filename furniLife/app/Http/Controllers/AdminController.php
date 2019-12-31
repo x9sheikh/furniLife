@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class AdminController extends Controller
 {
@@ -12,6 +14,12 @@ class AdminController extends Controller
     }
 
     public function index(){
-        return "Admin Pannel is Here";
+        $user = Auth::user();
+        $total_users = User::all();
+        $data = array(
+            'user' => $user,
+            'total_users' => $total_users,
+        );
+        return view('admin.index')->with($data);
     }
 }

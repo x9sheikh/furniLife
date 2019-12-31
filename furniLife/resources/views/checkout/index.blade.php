@@ -63,7 +63,11 @@
                                     </div>
 
                                     <div class=" col-12 mb-20">
-                                        <input type="submit" value="Continue" class="btn btn-dark">
+                                        <input type="submit" value="Continue (Cash On Delivery)" name="cash_on_delivery" class="btn btn-dark">
+                                    </div>
+
+                                    <div class=" col-12 mb-20">
+                                        <input type="submit" value="Continue (Credit/Debit)" name="credit_debit" class="btn btn-dark">
                                     </div>
 
 

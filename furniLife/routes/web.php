@@ -62,6 +62,4 @@ Route::get('/admin/home', 'AdminController@index');
 
 // Profile Checking can delete after development//
 
-Route::get('/profile/show', function (){
-   return view('profile');
-});
+Route::get('/payment_controller/show', 'PaymentController@index');

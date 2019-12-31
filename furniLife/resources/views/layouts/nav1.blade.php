@@ -167,7 +167,7 @@
                             <div class="language-currency-list hidden" id="accountList">
                                 <ul>
                                     @if(\Illuminate\Support\Facades\Auth::user()->usertype == 'admin')
-                                        <li><a href="{{url('/admin/home')}}">Admin Pannel</a></li>
+                                        <li><a href="{{url('admin')}}">Admin Pannel</a></li>
                                     @endif
                                     <li><a href="{{url('/dashboard/show')}}">Dashboard</a></li>
                                     <li><a href="{{url('/my_cart/show')}}">Cart</a></li>

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Cart;
 use App\Http\Requests\ProfileFormValidation;
 use http\Client\Curl\User;
 use Illuminate\Http\Request;
@@ -42,6 +43,7 @@ class CheckoutController extends Controller
     }
 
     public function continue(ProfileFormValidation $request){
+
         $user = Auth::user();
         $user->phoneNo = $request->input('phoneNo');
         $user->address_1 = $request->input('address_1');
@@ -50,7 +52,35 @@ class CheckoutController extends Controller
         $user->zip_code = $request->input('zip_code');
         $user->save();
 
-        return $user;
+        if ($request->has('cash_on_delivery'))
+        {
+            $user = Auth::user();
+            $user_id = $user->id;
+            $cart_products = DB::select('select * from carts where user_id = :user_id', ['user_id' => $user_id]);
+
+            foreach ($cart_products as $cart_product){
+                $product_id = $cart_product->product_id;
+                $quantity = $cart_product->quantity;
+
+                $req = new \App\Request();
+                $req->user_id = $user_id;
+                $req->product_id = $product_id;
+                $req->quantity = $quantity;
+                $req->status = 'requested';
+                $req->save();
+            }
+
+            foreach ($cart_products as $cart_product){
+                $remove_cart_product = Cart::find($cart_product->id);
+                $remove_cart_product->delete();
+            }
+            return "Cash On Delivery";
+        }
+        else if ($request->has('credit_debit'))
+        {
+            return "Credit";
+        }
+
 
     }
 }
