@@ -110,7 +110,7 @@
                                         <div class="cart-float-single-item d-flex">
                                             <span class="remove-item" id="remove-item"><a href="{{url("remove_to_cart_quickly/$mycart_product->id")}}"><i class="icon ion-md-close"></i></a></span>
                                             <div class="cart-float-single-item-image">
-                                                <a href="single-product.html"><img src="{{asset("assets/images/products/$mycart_product->profile")}}" class="img-fluid" alt=""></a>
+                                                <a href="single-product.html"><img src="{{asset("uploaded_files/$mycart_product->profile")}}" class="img-fluid" alt=""></a>
                                             </div>
                                             <div class="cart-float-single-item-desc">
                                                 <p class="product-title"> <a href="single-product.html">{{$mycart_product->title}} </a></p>
@@ -167,7 +167,7 @@
                             <div class="language-currency-list hidden" id="accountList">
                                 <ul>
                                     @if(\Illuminate\Support\Facades\Auth::user()->usertype == 'admin')
-                                        <li><a href="{{url('admin')}}">Admin Pannel</a></li>
+                                        <li><a href="{{route('admin.home')}}">Admin Pannel</a></li>
                                     @endif
                                     <li><a href="{{url('/dashboard/show')}}">Dashboard</a></li>
                                     <li><a href="{{url('/my_cart/show')}}">Cart</a></li>
@@ -515,87 +515,172 @@
 @if($quick_view == false)
     <!-- Do Nothing -->
 @else
-    @foreach($category_products as $category_product)
-        <div class="modal fade quick-view-modal-container" id="quick-view-modal-container{{$category_product->id}}" tabindex="-1" role="dialog" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <div class="row">
-                            <div class="col-lg-5 col-md-6 col-xs-12 mb-xxs-25 mb-xs-25 mb-sm-25">
-                                <!-- single product tabstyle one image gallery -->
-                                <div class="product-image-slider fl-product-image-slider fl3-product-image-slider quickview-product-image-slider">
-                                    <!--product large image start -->
-                                    <div class="tab-content product-large-image-list fl-product-large-image-list fl3-product-large-image-list quickview-product-large-image-list" id="myTabContent2">
-                                        <div class="tab-pane fade show active" id="single-slide-1-q" role="tabpanel" aria-labelledby="single-slide-tab-1-q">
-                                            <!--Single Product Image Start-->
-                                            <div class="single-product-img img-full">
-                                                <img src="{{ asset("assets/images/products/$category_product->profile") }}" class="img-fluid" alt="">
+    @if($related_products)
+        @foreach($related_products as $related_product)
+            <div class="modal fade quick-view-modal-container" id="quick-view-modal-container{{$related_product->id}}" tabindex="-1" role="dialog" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="row">
+                                <div class="col-lg-5 col-md-6 col-xs-12 mb-xxs-25 mb-xs-25 mb-sm-25">
+                                    <!-- single product tabstyle one image gallery -->
+                                    <div class="product-image-slider fl-product-image-slider fl3-product-image-slider quickview-product-image-slider">
+                                        <!--product large image start -->
+                                        <div class="tab-content product-large-image-list fl-product-large-image-list fl3-product-large-image-list quickview-product-large-image-list" id="myTabContent2">
+                                            <div class="tab-pane fade show active" id="single-slide-1-q" role="tabpanel" aria-labelledby="single-slide-tab-1-q">
+                                                <!--Single Product Image Start-->
+                                                <div class="single-product-img img-full">
+                                                    <img src="{{ asset("uploaded_files/$related_product->profile") }}" class="img-fluid" alt="">
+                                                </div>
+                                                <!--Single Product Image End-->
                                             </div>
-                                            <!--Single Product Image End-->
+                                        </div>
+                                        <!--product large image End-->
+
+                                    </div>
+                                    <!-- end of single product tabstyle one image gallery -->
+                                </div>
+                                <div class="col-lg-7 col-md-6 col-xs-12">
+                                    <!-- product quick view description -->
+                                    <div class="product-feature-details">
+                                        <h2 class="product-title mb-15">{{$related_product->title}}</h2>
+
+                                        <h2 class="product-price mb-15">
+                                            <span class="main-price discounted">{{$related_product->price + ($related_product->price*0.25)}} Rs</span>
+                                            <span class="discounted-price"> {{$related_product->price}} Rs</span>
+                                            <span class="discount-percentage">Save 25%</span>
+                                        </h2>
+
+                                        <p class="product-description mb-20">This product is really Awesome and comfortable to use. As you many of people nowadays are using this product. This product is very cheap. So, that everyone could afford it. Now, It can be possible to reach and buy for everyone due to its cheaper price as compare to other Brand. Now, Hit the buy button to purchase quickly</p>
+
+
+                                        <div class="cart-buttons mb-20">
+                                            <form method="post" action="{{url('/add_to_cart/home')}}  ">
+                                                @csrf
+                                                <div class="pro-qty mb-20">
+                                                    <input type="text" value="1" name="quantity" readonly>
+                                                </div>
+                                                <br>
+                                                <!-- EXTRA FIELD FOR DEVELOPERS -->
+                                                <input type="hidden" value="{{$related_product->id}}" name="product_id" >
+                                                <!-- END EXTRA FIELD -->
+                                                <div class="add-to-cart-btn">
+                                                    <input type="submit" value="Add to Cart" class="fl-btn btn btn-success">
+                                                    <i class="fa fa-lg fa-2x fa-shopping-cart"  ></i>
+                                                </div>
+                                            </form>
+                                        </div>
+
+
+                                        <div class="social-share-buttons">
+                                            <h3>share this product</h3>
+                                            <ul>
+                                                <li><a class="twitter" href="#"><i class="fa fa-twitter"></i></a></li>
+                                                <li><a class="facebook" href="#"><i class="fa fa-facebook"></i></a></li>
+                                                <li><a class="google-plus" href="#"><i class="fa fa-google-plus"></i></a></li>
+                                                <li><a class="pinterest" href="#"><i class="fa fa-pinterest"></i></a></li>
+                                            </ul>
                                         </div>
                                     </div>
-                                    <!--product large image End-->
-
+                                    <!-- end of product quick view description -->
                                 </div>
-                                <!-- end of single product tabstyle one image gallery -->
-                            </div>
-                            <div class="col-lg-7 col-md-6 col-xs-12">
-                                <!-- product quick view description -->
-                                <div class="product-feature-details">
-                                    <h2 class="product-title mb-15">{{$category_product->title}}</h2>
-
-                                    <h2 class="product-price mb-15">
-                                        <span class="main-price discounted">{{$category_product->price + ($category_product->price*0.25)}} Rs</span>
-                                        <span class="discounted-price"> {{$category_product->price}} Rs</span>
-                                        <span class="discount-percentage">Save 25%</span>
-                                    </h2>
-
-                                    <p class="product-description mb-20">This product is really Awesome and comfortable to use. As you many of people nowadays are using this product. This product is very cheap. So, that everyone could afford it. Now, It can be possible to reach and buy for everyone due to its cheaper price as compare to other Brand. Now, Hit the buy button to purchase quickly</p>
-
-
-                                    <div class="cart-buttons mb-20">
-                                        <form method="post" action="{{url('/add_to_cart/home')}}  ">
-                                            @csrf
-                                            <div class="pro-qty mb-20">
-                                                <input type="text" value="1" name="quantity" readonly>
-                                            </div>
-                                            <br>
-                                            <!-- EXTRA FIELD FOR DEVELOPERS -->
-                                            <input type="hidden" value="{{$category_product->id}}" name="product_id" >
-                                            <!-- END EXTRA FIELD -->
-                                            <div class="add-to-cart-btn">
-                                                <input type="submit" value="Add to Cart" class="fl-btn btn btn-success">
-                                                <i class="fa fa-lg fa-2x fa-shopping-cart"  ></i>
-                                            </div>
-                                        </form>
-                                    </div>
-
-
-                                    <div class="social-share-buttons">
-                                        <h3>share this product</h3>
-                                        <ul>
-                                            <li><a class="twitter" href="#"><i class="fa fa-twitter"></i></a></li>
-                                            <li><a class="facebook" href="#"><i class="fa fa-facebook"></i></a></li>
-                                            <li><a class="google-plus" href="#"><i class="fa fa-google-plus"></i></a></li>
-                                            <li><a class="pinterest" href="#"><i class="fa fa-pinterest"></i></a></li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <!-- end of product quick view description -->
                             </div>
                         </div>
                     </div>
-                </div>
 
+                </div>
             </div>
-        </div>
-        <!--=====  End of Quick view modal  ======-->
-    @endforeach
+            <!--=====  End of Quick view modal  ======-->
+        @endforeach
+    @else
+        @foreach($category_products as $category_product)
+            <div class="modal fade quick-view-modal-container" id="quick-view-modal-container{{$category_product->id}}" tabindex="-1" role="dialog" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="row">
+                                <div class="col-lg-5 col-md-6 col-xs-12 mb-xxs-25 mb-xs-25 mb-sm-25">
+                                    <!-- single product tabstyle one image gallery -->
+                                    <div class="product-image-slider fl-product-image-slider fl3-product-image-slider quickview-product-image-slider">
+                                        <!--product large image start -->
+                                        <div class="tab-content product-large-image-list fl-product-large-image-list fl3-product-large-image-list quickview-product-large-image-list" id="myTabContent2">
+                                            <div class="tab-pane fade show active" id="single-slide-1-q" role="tabpanel" aria-labelledby="single-slide-tab-1-q">
+                                                <!--Single Product Image Start-->
+                                                <div class="single-product-img img-full">
+                                                    <img src="{{ asset("assets/images/products/$category_product->profile") }}" class="img-fluid" alt="">
+                                                </div>
+                                                <!--Single Product Image End-->
+                                            </div>
+                                        </div>
+                                        <!--product large image End-->
+
+                                    </div>
+                                    <!-- end of single product tabstyle one image gallery -->
+                                </div>
+                                <div class="col-lg-7 col-md-6 col-xs-12">
+                                    <!-- product quick view description -->
+                                    <div class="product-feature-details">
+                                        <h2 class="product-title mb-15">{{$category_product->title}}</h2>
+
+                                        <h2 class="product-price mb-15">
+                                            <span class="main-price discounted">{{$category_product->price + ($category_product->price*0.25)}} Rs</span>
+                                            <span class="discounted-price"> {{$category_product->price}} Rs</span>
+                                            <span class="discount-percentage">Save 25%</span>
+                                        </h2>
+
+                                        <p class="product-description mb-20">This product is really Awesome and comfortable to use. As you many of people nowadays are using this product. This product is very cheap. So, that everyone could afford it. Now, It can be possible to reach and buy for everyone due to its cheaper price as compare to other Brand. Now, Hit the buy button to purchase quickly</p>
+
+
+                                        <div class="cart-buttons mb-20">
+                                            <form method="post" action="{{url('/add_to_cart/home')}}  ">
+                                                @csrf
+                                                <div class="pro-qty mb-20">
+                                                    <input type="text" value="1" name="quantity" readonly>
+                                                </div>
+                                                <br>
+                                                <!-- EXTRA FIELD FOR DEVELOPERS -->
+                                                <input type="hidden" value="{{$category_product->id}}" name="product_id" >
+                                                <!-- END EXTRA FIELD -->
+                                                <div class="add-to-cart-btn">
+                                                    <input type="submit" value="Add to Cart" class="fl-btn btn btn-success">
+                                                    <i class="fa fa-lg fa-2x fa-shopping-cart"  ></i>
+                                                </div>
+                                            </form>
+                                        </div>
+
+
+                                        <div class="social-share-buttons">
+                                            <h3>share this product</h3>
+                                            <ul>
+                                                <li><a class="twitter" href="#"><i class="fa fa-twitter"></i></a></li>
+                                                <li><a class="facebook" href="#"><i class="fa fa-facebook"></i></a></li>
+                                                <li><a class="google-plus" href="#"><i class="fa fa-google-plus"></i></a></li>
+                                                <li><a class="pinterest" href="#"><i class="fa fa-pinterest"></i></a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <!-- end of product quick view description -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <!--=====  End of Quick view modal  ======-->
+        @endforeach
+    @endif
+
 @endif
 
 

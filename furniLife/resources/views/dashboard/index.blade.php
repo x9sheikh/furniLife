@@ -72,24 +72,24 @@
                                         <table class="table table-bordered">
                                             <thead class="thead-light">
                                             <tr>
-                                                <th>No</th>
-                                                <th>Name</th>
+                                                <th>Order.No</th>
                                                 <th>Date</th>
+                                                <th>Name</th>
                                                 <th>Status</th>
                                                 <th>Total</th>
-                                                <th>Action</th>
+                                                <th>View</th>
                                             </tr>
                                             </thead>
 
                                             <tbody>
-                                            @foreach($mycart_products as $mycart_product)
+                                            @foreach($order_statuses as $order_status)
                                                 <tr>
-                                                    <td>1</td>
-                                                    <td>{{$mycart_product->title}}</td>
-                                                    <td>{{$mycart_product->updated_at}}</td>
-                                                    <td>{{$mycart_product->status}}</td>
-                                                    <td>{{$mycart_product->price}}</td>
-                                                    <td><a href="{{url("/$mycart_product->id")}}" class="btn">View</a></td>
+                                                    <td>{{$order_status->order_id}}</td>
+                                                    <td>{{$order_status->updated_at}}</td>
+                                                    <td>{{$order_status->title}}</td>
+                                                    <td>{{$order_status->status}}</td>
+                                                    <td>{{$order_status->price}}</td>
+                                                    <td><a href="{{url("/$order_status->id")}}" class="btn">Visit</a></td>
                                                 </tr>
                                             @endforeach
                                             </tbody>

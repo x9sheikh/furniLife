@@ -21,6 +21,10 @@ class SingleProductController extends Controller
     public function index($product_id)
     {
         $product = Product::find($product_id);
+        $product_category = $product->category_id;
+        $related_products = DB::select('select * from products where category_id = :category_id', ['category_id' => $product_category]);
+
+        $product = Product::find($product_id);
 
         $star_one = DB::select('select star from reviews where star=:star and product_id=:product_id', ['star' => 1, 'product_id' => $product_id]);
         $count_star_one = count($star_one);
@@ -71,7 +75,8 @@ class SingleProductController extends Controller
                 'product' => $product,
                 'mycart_products' => $mycart_products,
                 'total_price' => $total_price,
-                'quick_view' => false,
+                'quick_view' => true,
+                'related_products' => $related_products,
             );
             return view('single_product.index')->with($data);
         }

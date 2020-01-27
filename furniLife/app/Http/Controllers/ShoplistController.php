@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Category;
+use App\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -10,6 +11,9 @@ use Illuminate\Support\Facades\DB;
 class ShoplistController extends Controller
 {
     public function show($category_id){
+        $product = Product::find($category_id);
+        $product_category = $product->category_id;
+        $related_products = DB::select('select * from products where category_id = :category_id', ['category_id' => $product_category]);
         $categories = Category::all();
         $category_products = DB::select('select * from products where category_id = :category_id', ['category_id' => $category_id]);
         $total_price = 0;
@@ -30,6 +34,7 @@ class ShoplistController extends Controller
             'mycart_products' => $mycart_products,
             'total_price' => $total_price,
             'quick_view' => true,
+            'related_products' => $related_products,
         );
 
         return view('shop_list.index')->with($data);

@@ -53,6 +53,10 @@
     <script type="text/javascript">
         alert('You Cannt access the Admin Panel')
     </script>
+@elseif(session()->get('cash_on_delivery'))
+    <script type="text/javascript">
+        alert('Thankx for Shopping! Your Product will be Deliver Soon...')
+    </script>
 @endif
 <!--=============================================
 =            header container         =
@@ -108,7 +112,7 @@
                                         <div class="cart-float-single-item d-flex">
                                             <span class="remove-item" id="remove-item"><a href="{{url("remove_to_cart_quickly/$mycart_product->id")}}"><i class="icon ion-md-close"></i></a></span>
                                             <div class="cart-float-single-item-image">
-                                                <a href="single-product.html"><img src="assets/images/products/{{$mycart_product->profile}}" class="img-fluid" alt=""></a>
+                                                <a href="single-product.html"><img src="uploaded_files/{{$mycart_product->profile}}" class="img-fluid" alt=""></a>
                                             </div>
                                             <div class="cart-float-single-item-desc">
                                                 <p class="product-title"> <a href="single-product.html">{{$mycart_product->title}} </a></p>
@@ -159,13 +163,18 @@
 
                         <div class="user-icon">
                             <a href="javascript:void(0)" id="user-icon">
-                                <i class="fa fa-user-circle"></i>
+                                <i class="fa fa-user-circle">
+                                    @if(\Illuminate\Support\Facades\Auth::user())
+                                        {{auth()->user()->name}}
+                                    @else
+                                    @endif
+                                </i>
                             </a>
 
                             <div class="language-currency-list hidden" id="accountList">
                                 <ul>
                                     @if(\Illuminate\Support\Facades\Auth::user()->usertype == 'admin')
-                                        <li><a href="{{url('admin')}}">Admin Pannel</a></li>
+                                        <li><a href="{{route('admin.home')}}">Admin Pannel</a></li>
                                     @endif
                                     <li><a href="{{url('/dashboard/show')}}">Dashboard</a></li>
                                     <li><a href="{{url('/my_cart/show')}}">Cart</a></li>
@@ -504,7 +513,7 @@
                                     <div class="tab-pane fade show active" id="single-slide-1-q" role="tabpanel" aria-labelledby="single-slide-tab-1-q">
                                         <!--Single Product Image Start-->
                                         <div class="single-product-img img-full">
-                                            <img src="assets/images/products/{{$product->profile}}" class="img-fluid" alt="">
+                                            <img src="uploaded_files/{{$product->profile}}" class="img-fluid" alt="">
                                         </div>
                                         <!--Single Product Image End-->
                                     </div>

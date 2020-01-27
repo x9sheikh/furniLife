@@ -117,8 +117,8 @@
                             <div class="fl-product shop-grid-view-product">
                                 <div class="image">
                                     <a href="{{url("/$category_product->id")}}">
-                                        <img src="{{ asset("assets/images/products/$category_product->profile") }}" class="img-fluid" alt="product">
-                                        <img src="{{ asset("assets/images/products/$category_product->profile") }}" class="img-fluid" alt="product">
+                                        <img src="{{ asset("uploaded_files/$category_product->profile") }}" class="img-fluid" alt="product">
+                                        <img src="{{ asset("uploaded_files/$category_product->profile") }}" class="img-fluid" alt="product">
                                     </a>
                                     <!-- wishlist icon -->
                                     <span class="wishlist-icon">
@@ -149,8 +149,8 @@
                             <div class="fl-product shop-list-view-product">
                                 <div class="image">
                                     <a href="{{url("/$category_product->id")}}">
-                                        <img src="{{ asset("assets/images/products/$category_product->profile") }}" class="img-fluid" alt="">
-                                        <img src="{{ asset("assets/images/products/$category_product->profile") }}" class="img-fluid" alt="">
+                                        <img src="{{ asset("uploaded_files/$category_product->profile") }}" class="img-fluid" alt="">
+                                        <img src="{{ asset("uploaded_files/$category_product->profile") }}" class="img-fluid" alt="">
                                     </a>
                                 </div>
                                 <div class="content">

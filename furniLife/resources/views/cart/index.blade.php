@@ -154,7 +154,6 @@
 
                             </div>
                         </div>
-
                         <!--=======  End of Cart summery  =======-->
 
                     </div>

@@ -66,6 +66,7 @@ class CheckoutController extends Controller
                 $req->user_id = $user_id;
                 $req->product_id = $product_id;
                 $req->quantity = $quantity;
+                $req->order_id = crc32(uniqid());
                 $req->status = 'requested';
                 $req->save();
             }
@@ -74,11 +75,17 @@ class CheckoutController extends Controller
                 $remove_cart_product = Cart::find($cart_product->id);
                 $remove_cart_product->delete();
             }
-            return "Cash On Delivery";
+            $data = array(
+                'cash_on_delivery' => 'Thankx! for Shopping',
+            );
+            return redirect('/')->with($data);
         }
         else if ($request->has('credit_debit'))
         {
-            return "Credit";
+            //return "llll";
+            //$data = array();
+            //return view('payments.card');
+            return redirect('/payment/method/card');
         }
 
 

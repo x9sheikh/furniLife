@@ -18,9 +18,12 @@ class DashboardController extends Controller
     }
 
     public function dashboard(){
+
         $user = Auth::user();
         $total_price = 0;
+        $order_status = [];
         if (Auth::user()){
+            $order_status = DB::select('SELECT * FROM requests  INNER JOIN products on requests.product_id = products.id JOIN users on users.id = requests.user_id ');
             $auth_user_id = Auth::user()->id;
             $mycart_products = DB::select('SELECT  products.id, products.title, products.price, products.description, products.profile, carts.quantity, carts.updated_at, carts.status FROM products  LEFT JOIN carts  ON carts.product_id = products.id where carts.user_id = :user_id', ['user_id' => $auth_user_id]);
             // Here, we calculate the total price
@@ -36,6 +39,7 @@ class DashboardController extends Controller
             'mycart_products' => $mycart_products,
             'total_price' => $total_price,
             'quick_view' => false,
+            'order_statuses' => $order_status,
         );
 
 

@@ -211,12 +211,13 @@
                                             @foreach($products as $product)
                                                 @if($product->category_id == $category->id)
                                                     <!--=======  single product  =======-->
+                                                    <!--=======  single product  =======-->
 
                                                     <div class="fl-product">
                                                         <div class="image sale-product">
                                                             <a href="{{url('/'.$product->id)}}">
-                                                                <img src="assets/images/products/{{$product->profile}}" class="img-fluid" alt="">
-                                                                <img src="assets/images/products/{{$product->profile}}" class="img-fluid" alt="">
+                                                                <img src="uploaded_files/{{$product->profile}}" class="img-fluid" alt="">
+                                                                <img src="uploaded_files/{{$product->profile}}" class="img-fluid" alt="">
                                                             </a>
                                                             <!-- wishlist icon -->
                                                             <span class="wishlist-icon">
@@ -237,6 +238,9 @@
 
                                                                 @endif
                                                             @endforeach
+                                                            @if($total == 0)
+                                                                {{$total = 1}}
+                                                            @endif
                                                             <div class="rating">
                                                                 @if($total_stars/$total <= 1)
                                                                     <i class="fa fa-star active"></i>
@@ -303,8 +307,8 @@
                                                 <div class="fl-product">
                                                     <div class="image sale-product">
                                                         <a href="{{url('/'.$product->id)}}">
-                                                            <img src="assets/images/products/{{$product->profile}}" class="img-fluid" alt="">
-                                                            <img src="assets/images/products/{{$product->profile}}" class="img-fluid" alt="">
+                                                            <img src="uploaded_files/{{$product->profile}}" class="img-fluid" alt="">
+                                                            <img src="uploaded_files/{{$product->profile}}" class="img-fluid" alt="">
                                                         </a>
                                                         <!-- wishlist icon -->
                                                         <span class="wishlist-icon">
@@ -508,8 +512,8 @@
                                     <div class="fl-product">
                                         <div class="image">
                                             <a href="single-product.html">
-                                                <img src="assets/images/products/product05.jpg" class="img-fluid" alt="">
-                                                <img src="assets/images/products/product05-2.jpg" class="img-fluid" alt="">
+                                                <img src="uploaded_files/product05.jpg" class="img-fluid" alt="">
+                                                <img src="uploaded_files/product05-2.jpg" class="img-fluid" alt="">
                                             </a>
                                             <!-- wishlist icon -->
                                             <span class="wishlist-icon">
@@ -546,8 +550,8 @@
                                     <div class="fl-product">
                                         <div class="image">
                                             <a href="single-product.html">
-                                                <img src="assets/images/products/product06.jpg" class="img-fluid" alt="">
-                                                <img src="assets/images/products/product06-2.jpg" class="img-fluid" alt="">
+                                                <img src="uploaded_files/product06.jpg" class="img-fluid" alt="">
+                                                <img src="uploaded_files/product06-2.jpg" class="img-fluid" alt="">
                                             </a>
                                             <!-- wishlist icon -->
                                             <span class="wishlist-icon">
@@ -592,8 +596,8 @@
                                     <div class="fl-product">
                                         <div class="image">
                                             <a href="single-product.html">
-                                                <img src="assets/images/products/product04.jpg" class="img-fluid" alt="">
-                                                <img src="assets/images/products/product04-2.jpg" class="img-fluid" alt="">
+                                                <img src="uploaded_files/product04.jpg" class="img-fluid" alt="">
+                                                <img src="uploaded_files/product04-2.jpg" class="img-fluid" alt="">
                                             </a>
                                             <!-- wishlist icon -->
                                             <span class="wishlist-icon">
@@ -630,8 +634,8 @@
                                     <div class="fl-product">
                                         <div class="image sale-product">
                                             <a href="single-product.html">
-                                                <img src="assets/images/products/product01.jpg" class="img-fluid" alt="">
-                                                <img src="assets/images/products/product01-2.jpg" class="img-fluid" alt="">
+                                                <img src="uploaded_files/product01.jpg" class="img-fluid" alt="">
+                                                <img src="uploaded_files/product01-2.jpg" class="img-fluid" alt="">
                                             </a>
                                             <!-- wishlist icon -->
                                             <span class="wishlist-icon">
@@ -668,8 +672,8 @@
                                     <div class="fl-product">
                                         <div class="image">
                                             <a href="single-product.html">
-                                                <img src="{{ asset('assets/images/products/kitchrn_bowls.jpg') }}" class="img-fluid" alt="">
-                                                <img src="assets/images/products/product02-2.jpg" class="img-fluid" alt="">
+                                                <img src="uploaded_files/kitchrn_bowls.jpg" class="img-fluid" alt="">
+                                                <img src="uploaded_files/product02-2.jpg" class="img-fluid" alt="">
                                             </a>
                                             <!-- wishlist icon -->
                                             <span class="wishlist-icon">
@@ -706,8 +710,8 @@
                                     <div class="fl-product">
                                         <div class="image sale-product">
                                             <a href="single-product.html">
-                                                <img src="assets/images/products/product03.jpg" class="img-fluid" alt="">
-                                                <img src="assets/images/products/product03-2.jpg" class="img-fluid" alt="">
+                                                <img src="uploaded_files/product03.jpg" class="img-fluid" alt="">
+                                                <img src="uploaded_files/product03-2.jpg" class="img-fluid" alt="">
                                             </a>
                                             <!-- wishlist icon -->
                                             <span class="wishlist-icon">
@@ -745,8 +749,8 @@
                                     <div class="fl-product">
                                         <div class="image">
                                             <a href="single-product.html">
-                                                <img src="assets/images/products/product05.jpg" class="img-fluid" alt="">
-                                                <img src="assets/images/products/product05-2.jpg" class="img-fluid" alt="">
+                                                <img src="uploaded_files/product05.jpg" class="img-fluid" alt="">
+                                                <img src="uploaded_files/product05-2.jpg" class="img-fluid" alt="">
                                             </a>
                                             <!-- wishlist icon -->
                                             <span class="wishlist-icon">
@@ -783,8 +787,8 @@
                                     <div class="fl-product">
                                         <div class="image">
                                             <a href="single-product.html">
-                                                <img src="assets/images/products/product06.jpg" class="img-fluid" alt="">
-                                                <img src="assets/images/products/product06-2.jpg" class="img-fluid" alt="">
+                                                <img src="uploaded_files/product06.jpg" class="img-fluid" alt="">
+                                                <img src="uploaded_files/product06-2.jpg" class="img-fluid" alt="">
                                             </a>
                                             <!-- wishlist icon -->
                                             <span class="wishlist-icon">
@@ -829,8 +833,8 @@
                                     <div class="fl-product">
                                         <div class="image">
                                             <a href="single-product.html">
-                                                <img src="assets/images/products/product05.jpg" class="img-fluid" alt="">
-                                                <img src="assets/images/products/product05-2.jpg" class="img-fluid" alt="">
+                                                <img src="uploaded_files/product05.jpg" class="img-fluid" alt="">
+                                                <img src="uploaded_files/product05-2.jpg" class="img-fluid" alt="">
                                             </a>
                                             <!-- wishlist icon -->
                                             <span class="wishlist-icon">
@@ -867,8 +871,8 @@
                                     <div class="fl-product">
                                         <div class="image sale-product">
                                             <a href="single-product.html">
-                                                <img src="assets/images/products/product01.jpg" class="img-fluid" alt="">
-                                                <img src="assets/images/products/product01-2.jpg" class="img-fluid" alt="">
+                                                <img src="uploaded_files/product01.jpg" class="img-fluid" alt="">
+                                                <img src="uploaded_files/product01-2.jpg" class="img-fluid" alt="">
                                             </a>
                                             <!-- wishlist icon -->
                                             <span class="wishlist-icon">
@@ -1148,8 +1152,8 @@
                                         <div class="fl-product">
                                             <div class="image">
                                                 <a href="{{url('/'.$best->id)}}">
-                                                    <img src="{{ asset('assets/images/products/'.$best->profile) }}" class="img-fluid" alt="">
-                                                    <img src="{{ asset('assets/images/products/'.$best->profile) }}" class="img-fluid" alt="">
+                                                    <img src="{{ asset('uploaded_files/'.$best->profile) }}" class="img-fluid" alt="">
+                                                    <img src="{{ asset('uploaded_files/'.$best->profile) }}" class="img-fluid" alt="">
                                                 </a>
                                                 <!-- wishlist icon -->
                                                 <span class="wishlist-icon">
