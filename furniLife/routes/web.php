@@ -48,7 +48,7 @@ Route::group(['middleware' => 'auth'], function () {
 
 
     Route::get('/checkout/show', 'CheckoutController@index');
-    //Route::post('/checkout/continue/show', 'CheckoutController@continue');
+    Route::post('/checkout/continue/show', 'CheckoutController@continue');
 
     Route::get('/dashboard/show', 'DashboardController@dashboard');
     Route::post('/dashboard/show/accounts_changing', 'DashboardController@accounts_changing');

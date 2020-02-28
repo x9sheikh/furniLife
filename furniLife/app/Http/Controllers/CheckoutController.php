@@ -43,7 +43,6 @@ class CheckoutController extends Controller
     }
 
     public function continue(ProfileFormValidation $request){
-
         $user = Auth::user();
         $user->phoneNo = $request->input('phoneNo');
         $user->address_1 = $request->input('address_1');
@@ -54,6 +53,7 @@ class CheckoutController extends Controller
 
         if ($request->has('cash_on_delivery'))
         {
+
             $user = Auth::user();
             $user_id = $user->id;
             $cart_products = DB::select('select * from carts where user_id = :user_id', ['user_id' => $user_id]);
